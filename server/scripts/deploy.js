@@ -1,5 +1,5 @@
 const main = async() => {
-  const contractFactory = await ethers.getContractFactory('TodoDappContract');
+  const contractFactory = await ethers.getContractFactory("TodoDappContract");
   const contract = await contractFactory.deploy();
   await contract.deployed();
 
@@ -12,7 +12,7 @@ const runMain = async() => {
     process.exit(0);
   } catch(error) {
     console.log(error);
-    Process.exit(1);
+    process.exit(1);
   }
 }
 

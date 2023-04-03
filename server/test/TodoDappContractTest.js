@@ -1,10 +1,9 @@
 const {expect} = require("chai");
-const {ethers} = require("hardhat");
+const {ethers} = require("ethers");
 
-
-describe("Inpute Contract", function() {
+describe("TodoDapp Contract", function() {
   let TodoDappContract;
-  let todoDappContract;
+  let tododappContract;
   let owner;
 
   const NUM_TOTAL_TASKS = 5;
@@ -13,18 +12,19 @@ describe("Inpute Contract", function() {
 
   beforeEach(async function() {
     TodoDappContract = await ethers.getContractFactory("TodoDappContract");
+    const {ethers} = require("haedhat"); 
     [owner] = await ethers.getSigners();
-    todoDappContract = await TodoDappContract.deploy();
+    Contract = await TodoDappContract.deploy();
 
     totalTasks = [];
 
     for(let i=0; i<NUM_TOTAL_TASKS; i++) {
       let task = {
-        'taskText': 'Task number:- ' +i,
+        'taskText': 'Task number:- ' + i,
         'isRemoved': false
       };
 
-      await todoDappContract.inputeTask(task.taskText, task.isRemoved);
+      await tododappContract.inputeTask(task.taskText, task.isRemoved);
       totalTasks.push(task);
     }
   });
@@ -36,14 +36,14 @@ describe("Inpute Contract", function() {
         'isRemoved': false
       };
 
-      await expect(await todoDappContract.inputeTask(task.taskText, task.isRemoved)
-    ).to.emit(todoDappContract, 'InputeTask').withArgs(owner.address, NUM_TOTAL_TASKS);
+      await expect(await tododappContract.inputeTask(task.taskText, task.isRemoved)
+    ).to.emit(tododappContract, 'InputeTask').withArgs(owner.address, NUM_TOTAL_TASKS);
     })
   });
 
   describe("Get All Tasks", function() {
     it("should return the correct number of total tasks", async function() {
-      const tasksFromChain = await todoDappContract.getTasks();
+      const tasksFromChain = await tododappContract.getTasks();
       expect(tasksFromChain.length).to.equal(NUM_TOTAL_TASKS);
     })
   })
@@ -54,9 +54,9 @@ describe("Inpute Contract", function() {
       const TASK_REMOVED = true;
 
       await expect(
-        todoDappContract.removeTask(TASK_ID, TASK_REMOVED)
+        tododappContract.removeTask(TASK_ID, TASK_REMOVED)
       ).to.emit(
-        todoDappContract, 'RemoveTask'
+        tododappContract, 'RemoveTask'
       ).withArgs(
         TASK_ID, TASK_REMOVED
       );

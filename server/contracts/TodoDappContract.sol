@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: UNLICENSE
 
 pragma solidity 0.8.19;
-
+/**
+ * @title message Contract
+ * @dev Store & retrieve value in a variable
+ */
 contract TodoDappContract {
 
     event InputeTask(address recipient, uint taskId);
@@ -16,11 +19,11 @@ contract TodoDappContract {
 
     Task[] private tasks;
 
-    // Mapping each task ID to the wallet address of the user who created the task.
+    // this mapping allows for efficient retrieval of a user's wallet address based on the
+    // message id, without having to search through the entire list of messages or wallet addresses.
     mapping(uint256 => address) taskToOwner;
 
-    // Method to be called by the frontend when trying to add a new Task to the to-do list,
-    // indicating that a new task has been added. 
+    // Method  that can be invoked by the frontend to add a new message.
     function inputeTask(string memory taskText, bool isRemoved) external {
         uint taskId = tasks.length;
         tasks.push(Task(taskId, msg.sender, taskText, isRemoved));
@@ -28,9 +31,9 @@ contract TodoDappContract {
         emit InputeTask(msg.sender, taskId);
     }
 
-    // Function is used to retrieve all tasks owned by the caller (the user who is calling the function)
-    // and that are not marked as deleted. the function returns an array of Task 
-    // structs that match these criteria.
+    // A process to retrieve only the messages that were created by the Ethereum 
+    // address that is calling the function. The function returns an array of Task objects 
+    // representing these messages.
     function getTasks() external view returns (Task[] memory) {
         Task[] memory temporary = new Task[](tasks.length);
         uint counter = 0;
@@ -48,9 +51,8 @@ contract TodoDappContract {
         return result;
     }
 
-    // Method is used to delete a task from the to-do list. It takes two parameters, 
-    // taskId which is the ID of the task to be deleted, and isRemoved which is a boolean flag indicating
-    // whether the task has been deleted or not.
+    // A function that allows the creator of a message 
+    //to remove it from the list of tasks.
     function removeTask(uint taskId, bool isRemoved) external {
         if(taskToOwner[taskId] == msg.sender) {
             tasks[taskId].isRemoved = isRemoved;
