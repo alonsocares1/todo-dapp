@@ -6,16 +6,16 @@ and personal growth.
 
 # Contract Overview
 The TodoDappContract is a simple contract that allows users to input, get and remove tasks. The contract has the following functions:
-•	inputeTask: Allows a user to input a new task with the task text and a boolean value indicating whether the task has been removed or not.
-•	getTasks: Returns an array of all the tasks that have been inputted by users.
-•	removeTask: Allows the owner of the contract to remove a task by specifying its ID and a boolean value indicating whether the task has been removed or not.
+1	inputeTask: Allows a user to input a new task with the task text and a boolean value indicating whether the task has been removed or not.
+2	getTasks: Returns an array of all the tasks that have been inputted by users.
+3	removeTask: Allows the owner of the contract to remove a task by specifying its ID and a boolean value indicating whether the task has been removed or not.
 
 # Prerequisites
 **To run this application, you will need:**
-•	Node.js (v14 or higher)
-•	Hardhat, MetaMask
-•	A web3-enabled browser like Brave or Chrome with MetaMask installed
-•	An Ethereum account on the Goerli test network
+1	Node.js (v14 or higher)
+2	Hardhat, MetaMask
+3	A web3-enabled browser like Brave or Chrome with MetaMask installed
+4	An Ethereum account on the Goerli test network
 
 # Usage
 1. To create a new task, enter the task description in the input field and click on the "INPUTE Task" button.
