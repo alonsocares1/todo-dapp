@@ -11,11 +11,12 @@ The TodoDappContract is a simple contract that allows users to input, get and re
 •	removeTask: Allows the owner of the contract to remove a task by specifying its ID and a boolean value indicating whether the task has been removed or not.
 
 # Prerequisites
-To run this application, you will need:
+**To run this application, you will need:**
 •	Node.js (v14 or higher)
 •	Hardhat, MetaMask
 •	A web3-enabled browser like Brave or Chrome with MetaMask installed
 •	An Ethereum account on the Goerli test network
+
 # Usage
 1. To create a new task, enter the task description in the input field and click on the "INPUTE Task" button.
 2. To remove a task, click on the remove icon button next to the task description.
